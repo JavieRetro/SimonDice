@@ -7,7 +7,7 @@ public class Record {
 	final private int MAX_JUGADORES = 10;
 	private int contador = 0;
 	private Jugador[] jugadores = new Jugador[MAX_JUGADORES];
-	private int max = 0;
+	private int maxim = 0;
 	
 	public void añadirJugador(Jugador _jugador) {
 		int minimo = 0;
@@ -29,9 +29,41 @@ public class Record {
 
 	public void maximo() {
 		if (contador < MAX_JUGADORES) {
-			max = contador;
+			maxim = contador;
 		} else {
-			max = MAX_JUGADORES;
+			maxim = MAX_JUGADORES;
 		}
 	}
+	
+	public void ordenarRanking() {
+		maximo();
+		
+		for(int i = 0; i <= this.maxim - 1; i++ ) {
+			for(int j = 0; j <= this.maxim - 1; j++){
+				if(jugadores[j].getPuntuacion() < jugadores[j + 1].getPuntuacion()) {
+					Jugador temp = jugadores[j + 1];
+					jugadores[j + 1] = jugadores[j];
+					jugadores[j] = temp;
+				}
+			}
+		}
+	}
+	public void showRanking () {
+		ordenarRanking();
+		for(int i = 0; i < this.maxim -1; i++ ) {
+			
+		}
+		
+	}
+	public void showBestPlayer() {
+		
+	}
+	public void cargarRanking() {
+		
+	}
+	public void escribirRanking () {
+		
+	}
+
 }
+	
