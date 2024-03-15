@@ -71,7 +71,7 @@ public class Record {
 	 */
 	public void showRanking () {
 		ordenarRanking();
-		for(int i = 0; i < this.maxim -1; i++ ) {
+		for(int i = 0; i < this.maxim; i++ ) {
 			System.out.println(i + 1 + "." + jugadores[i].getNombre() + " " + jugadores[i].getPuntuacion());
 		}
 		

@@ -232,7 +232,7 @@ public class Engine {
  					System.out.println("Buen trabajo!! Sigamos con la próxima secuencia");
  					numSecuencia++;
  					coloresSecuencia++;
- 					puntuacion += 5;
+ 					puntuacion += 8;
  				}else if(error && coloresSecuencia == MAX_COLORES_SEC) {
  				System.out.println("ENHORABUENA, HAS GANADO");
  				puntuacion += 40;
@@ -262,7 +262,7 @@ public class Engine {
     	  do {
     	  Jugador jugador1 = new Jugador(nombre);
     	  System.out.println("Bienvenido " + nombre + " espero que disfrutes.");
-    	  System.out.println("Dime, ¿que modo escoges?:" + "\n 1.Modo Facil\n " + "2.Modo Dificil \n " + "3.Ranking Puntuacion\n " + "4.Mejor jugador ranking\n " + "0.Salir");
+    	  System.out.println("Dime, ¿que modo escoges?:" + "\n 1.Modo Facil\n " + "2.Modo Dificil \n " + "3.Ranking Puntuacion 10 Mejores Jugadores\n " + "4.Mejor(es) jugador(es) ranking\n " + "0.Salir");
     	  _opcion = scanner.nextInt();
      
       
@@ -276,14 +276,12 @@ public class Engine {
                     case 1:
                     	jugador1.setPuntuacion(play(tModo.ModoFacil));
         				System.out.println("Puntuacion final: " + jugador1.getPuntuacion());
-        				ranking.añadirJugador(jugador1);
         				break;
     	  
                    case 2:
                 	   puntuacionDificil = play(tModo.ModoDificil) * 2;
        			    jugador1.setPuntuacion(puntuacionDificil);
        			    System.out.println("Puntuacion final: " + puntuacionDificil);
-       			    ranking.añadirJugador(jugador1);
        				break;
                    case 3:
        				ranking.showRanking();
