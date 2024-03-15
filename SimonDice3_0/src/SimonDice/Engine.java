@@ -262,7 +262,7 @@ public class Engine {
     	  do {
     	  Jugador jugador1 = new Jugador(nombre);
     	  System.out.println("Bienvenido " + nombre + " espero que disfrutes.");
-    	  System.out.println("Dime, ¿que modo escoges?:" + "\n 1.Modo_Facil\n " + " 2.Modo_Dificil \n" + " 0.Salir");
+    	  System.out.println("Dime, ¿que modo escoges?:" + "\n 1.Modo Facil\n " + "2.Modo Dificil \n " + "3.Ranking Puntuacion\n " + "4.Mejor jugador ranking\n " + "0.Salir");
     	  _opcion = scanner.nextInt();
      
       
