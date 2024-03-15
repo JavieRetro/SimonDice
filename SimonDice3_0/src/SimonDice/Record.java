@@ -117,6 +117,14 @@ public class Record {
 			}
 			
 		}
+	
+	public void escribirRanking() {
+		
+	}
+	
+	public void cargarRanking() {
+		
+	}
 		
 		
 	}

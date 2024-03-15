@@ -1,5 +1,7 @@
 package Files;
 
-public class ICostumWriteFile {
+public interface ICostumWriteFile {
+	void closeWriteFile();
+	void write(String texto);
 
 }
