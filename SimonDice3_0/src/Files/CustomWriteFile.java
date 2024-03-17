@@ -1,39 +1,37 @@
 package Files;
 
-import java.io.File;
+
 import java.io.IOException;
-import java.io.Writer;
 import java.io.FileWriter;
-import java.io.OutputStreamWriter;
 
 public class CustomWriteFile implements ICostumWriteFile {
-	private String w;
+	private String wr;
 	
-	public CustomWriteFile(String w) {
-		this.w = w;
-	}
-	
-	public void writeToFile (String writing) {
-		try (FileWriter writer = new FileWriter(w) {
-		writer.write(writing);
-		}catch (IOException e) {
-			
-		}
-			
-	}
-	
-	
-
 	@Override
 	public void closeWriteFile() {
 		// TODO Auto-generated method stub
-		
+		try {
+			if(wr != null) {
+				this.wr.close();
+			}
+		}catch(IOException e) {
+			System.out.println("No se cierra el scanner de escritura");
+			
+		}
 	}
 
 	@Override
-	public void write(String texto) {
+	public void write(String w) {
 		// TODO Auto-generated method stub
-		
+		try {
+		if(w != null) {
+			this.wr.write(w);
+		 }
+		}catch (IOException e) {
+		System.out.println("Error al fichar el texto");
 	}
-
+  }
 }
+	
+
+
