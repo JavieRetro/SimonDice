@@ -1,7 +1,13 @@
 package SimonDice;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import javax.management.Query;
+
+import Files.CustomReadFile;
+import Files.CustomWriteFile;
 
 public class Record {
 
@@ -119,11 +125,24 @@ public class Record {
 		}
 	
 	public void escribirRanking() {
+		try {
+			CustomWriteFile wr = new CustomWriteFile(null);
+			
+		} catch (IOException e) {
+			System.out.println("Error en escribirRanking clase Record");
+		}
 		
 	}
 	
 	public void cargarRanking() {
 		
+		try {
+			CustomReadFile r = new CustomReadFile(null);
+			ArrayList<String> a = new ArrayList<String>();
+			a = r.leerJugadores();
+		} catch (FileNotFoundException e) {
+			System.out.println("Error en cargarRanking clase Record");
+		}
 	}
 		
 		

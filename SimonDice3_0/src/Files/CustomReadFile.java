@@ -24,9 +24,18 @@ public CustomReadFile(String texto) throws FileNotFoundException {
 	}
 		
 	@Override
-	public ArrayList<String> Jugadores() {
+	public ArrayList<String> leerJugadores() {
 		// TODO Auto-generated method stub
-		ArrayList<String> Jugadores = new ArrayList<String>();
+			ArrayList<String> jugadores = new ArrayList<String>();
+			while (sc.hasNextLine()) {
+				String texto = sc.nextLine();
+				String[] info = texto.split(" ", 2);
+				jugadores.add(info[0] + " - " + info[1]);
+				}
+				closeReadFile();
+				return jugadores;
+			}
+		
 		
 
 	@Override
