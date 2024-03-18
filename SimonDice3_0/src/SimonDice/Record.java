@@ -129,7 +129,7 @@ public class Record {
 	public void escribirRanking() {
 		try {
 			this.maximo();
-			CustomWriteFile wr = new CustomWriteFile("");
+			CustomWriteFile wr = new CustomWriteFile("SimonDice3_0/src/data/jugadores.txt");
 			String nombre = " ";
 			for(int i = 0; i < this.maxim; i++) {
 				nombre = this.jugadores[i].getPuntuacion() + " " + this.jugadores[i].getNombre() + "\n";
