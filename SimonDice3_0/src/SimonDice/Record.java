@@ -13,7 +13,7 @@ public class Record {
 
 	final private int MAX_JUGADORES = 10;
 	private int contador = 0;
-	private Jugador[] jugadores = new Jugador[MAX_JUGADORES];
+	private Jugador[] jugadores;
 	private int maxim = 0;
 	
 	public Record(){
@@ -24,25 +24,19 @@ public class Record {
 	/**
 	 * añadirJugador: Recibimos por parámetro un Jugador lo añadimos al array jugadores
 	 * si obtenemos mas de 10 jugadores el siguiente lo actualizo con el jugador que menos puntos tenga el array
-	 * @param _jugador recibir objeto del tipo Jugador
+	 * @param _jugador recibir objeto tipo Jugador
 	 */
 	public void añadirJugador(Jugador _jugador) {
-		int minimo = 0;
-		for (int i = 0; i < contador; i++) {
-			if (jugadores[i].getPuntuacion() < jugadores[minimo].getPuntuacion()) {
-				minimo = i;
-			}
-		}
 		if (this.contador < this.MAX_JUGADORES) {
 			this.jugadores[contador] = _jugador;
 			this.contador++;
 		} else {
-			if (_jugador.getPuntuacion() > jugadores[minimo].getPuntuacion()) {
-				jugadores[minimo] = _jugador;
+			this.jugadores[MAX_JUGADORES-1] = _jugador;
+			
 			}
 		}
 
-	}
+	
 	/**
 	 * maximo: metodo que nos indica cuantos jugadores
 	 *  tenemos hasta el momento en array
@@ -65,9 +59,9 @@ public class Record {
 		for(int i = 0; i <= this.maxim - 1; i++ ) {
 			for(int j = 0; j <= this.maxim - 1; j++){
 				if(jugadores[j].getPuntuacion() < jugadores[j + 1].getPuntuacion()) {
-					Jugador temp = jugadores[j + 1];
+					Jugador jugador = jugadores[j + 1];
 					jugadores[j + 1] = jugadores[j];
-					jugadores[j] = temp;
+					jugadores[j] = jugador;
 				}
 			}
 		}
@@ -82,6 +76,12 @@ public class Record {
 		}
 		
 	}
+	/**
+	 * buscarJugador: Recibir String, buscamos en el array el jugador
+	 * con el mismo nombre y devolver el objto jugador, si no lo encontramos, devolver null.
+	 * @param _nombre Recibe String
+	 * @return Devolver jugador o null
+	 */
 	
 	public Jugador buscarJugador(String _nombre) {
 		maximo();
@@ -116,34 +116,52 @@ public class Record {
 				System.out.println(i + 1 +"."+ jugadores[i].getNombre() + " " + jugadores[i].getPuntuacion());
 				i++;
 			}else i++;
-			
-				
-				
 				
 			}
 			
 		}
+	/**
+	 * escribirRanking: Recorrer array jugadores, llamamos 
+	 * al método writefile y escribimos en el fichero la puntuación 
+	 * y el nombre de jugadores
+	 */
 	
 	public void escribirRanking() {
 		try {
-			CustomWriteFile wr = new CustomWriteFile(null);
+			this.maximo();
+			CustomWriteFile wr = new CustomWriteFile("");
+			String nombre = " ";
+			for(int i = 0; i < this.maxim; i++) {
+				nombre = this.jugadores[i].getPuntuacion() + " " + this.jugadores[i].getNombre() + "\n";
+				wr.writeFile(nombre);
+				
+			}
+			wr.closeWriteFile();
 			
 		} catch (IOException e) {
-			System.out.println("Error en escribirRanking clase Record");
+			System.out.println(e);
 		}
 		
 	}
 	
-	public void cargarRanking() {
+	/**
+	 * cargarRanking: lee el fichero con el método leerJugadores de CustomReadFile
+	 * @throws IOException
+	 */
+	
+	public void cargarRanking() throws IOException {
 		
-		try {
-			CustomReadFile r = new CustomReadFile(null);
-			ArrayList<String> a = new ArrayList<String>();
-			a = r.leerJugadores();
-		} catch (FileNotFoundException e) {
-			System.out.println("Error en cargarRanking clase Record");
+			CustomReadFile red = new CustomReadFile("");
+			ArrayList<Jugador> a = new ArrayList<Jugador>();
+			a = red.leerJugadores();
+			
+			if(a == null) {
+				return;
+			}
+			for(int i = 0; i < a.size()&& i < MAX_JUGADORES; i++) {
+				añadirJugador(a.get(i));
+			}
 		}
-	}
-		
+	
 		
 	}

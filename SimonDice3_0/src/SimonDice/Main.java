@@ -1,4 +1,5 @@
 package SimonDice;
+import java.io.IOException;
 import java.util.Scanner;
 /**
  * Unica clase del programa
@@ -7,8 +8,9 @@ public class Main {
 	/**
 	*  Punto de entrada del programa
 	* @param args
+	 * @throws IOException 
 	*/
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		
 		Engine engine = new Engine();

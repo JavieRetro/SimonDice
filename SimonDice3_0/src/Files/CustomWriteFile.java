@@ -4,12 +4,17 @@ package Files;
 import java.io.IOException;
 import java.io.FileWriter;
 
-public class CustomWriteFile implements ICostumWriteFile {
+public class CustomWriteFile extends FileWriter implements ICostumWriteFile {
 	private FileWriter wr;
+	/**
+	 * Constructora que recibe string
+	 * @param texto
+	 * @throws IOException
+	 */
 	
 	public CustomWriteFile (String texto) throws IOException{
-		super();
-		this.wr = new FileWriter("C:\\Users\\javie\\OneDrive\\Escritorio\\SimonDiceVer3\\SimonDice3_0\\src\\data\\jugadores.txt");
+		super(texto);
+		this.wr = new FileWriter(" ");
 		
 	}
 	
@@ -27,9 +32,7 @@ public class CustomWriteFile implements ICostumWriteFile {
 	public void writeFile(String texto) {
 		// TODO Auto-generated method stub
 		try {
-		if(wr != null) {
 			this.wr.write(texto);
-		 }
 		}catch (IOException e) {
 		System.out.println("Error al fichar el texto");
 	}

@@ -1,8 +1,15 @@
 package SimonDice;
+/*
+ * clase Jugador
+ */
 
 public class Jugador {
 	private String nombre;
 	private int puntuacion;
+	/**
+	 * 
+	 * @param _nombre vble String
+	 */
 	
 	public Jugador (String _nombre) {
 	this.nombre = _nombre;

@@ -14,23 +14,29 @@ public class CustomReadFile extends FileReader implements ICostumReadFile{
 	    
 
 		private FileReader red;
-	    private Scanner sc;
+	    private Scanner scanner;
 	    
 public CustomReadFile(String texto) throws FileNotFoundException {
 		super(texto);
 		// TODO Auto-generated constructor stub
-		this.red = new FileReader(" ")  ;
-		this.sc = new Scanner(this);
+		this.red = new FileReader(" ");
+		this.scanner = new Scanner(this);
 	}
 		
 	@Override
-	public ArrayList<String> leerJugadores() {
+	/**
+	 * leerJugadores: Se lee los jugadores del fichero y estos se añaden a un arrayList
+	 */
+	public ArrayList<Jugador> leerJugadores() {
 		// TODO Auto-generated method stub
-			ArrayList<String> jugadores = new ArrayList<String>();
-			while (sc.hasNextLine()) {
-				String texto = sc.nextLine();
-				String[] info = texto.split(" ", 2);
-				jugadores.add(info[0] + " - " + info[1]);
+			ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
+			while (scanner.hasNextLine()) {
+				int puntuacion = scanner.nextInt();
+				String texto = scanner.nextLine();
+				Jugador jugador = new Jugador(texto);
+				jugador.setPuntuacion(puntuacion);
+				jugadores.add(jugador);
+			
 				}
 				closeReadFile();
 				return jugadores;
@@ -42,9 +48,8 @@ public CustomReadFile(String texto) throws FileNotFoundException {
 	public void closeReadFile() {
 		// TODO Auto-generated method stub
 		try {
-		if(red != null) {
-			red.close();
-		}
+			this.red.close();
+		
 	}catch(IOException e) {
 		System.out.println("No se cierra el scanner de lectura");
 		

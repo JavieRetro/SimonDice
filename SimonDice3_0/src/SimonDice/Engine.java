@@ -1,4 +1,5 @@
 package SimonDice;
+import java.io.IOException;
 /**
  * @author javie
  */
@@ -249,9 +250,9 @@ public class Engine {
  			 * Metodo que muestra el menú principal, obtenemos una opción del usuario e iniciamos la partida co
  			 * un modo seleccionado.
  			 */
- 		       public void start(){
+ 		       public void start() throws IOException{
     	      int _opcion;
-    	      int puntuacionDificil;
+    	      int puntuación;
     			Record ranking = new Record();
     	      System.out.println("Bienvenido al...");
     	      System.out.println("¡¡¡Simoooonnn diceeee!!!");
@@ -274,19 +275,26 @@ public class Engine {
     	            break;
     	  
                     case 1:
-                    	jugador1.setPuntuacion(play(tModo.ModoFacil));
+                    	puntuación = play(tModo.ModoFacil);
+                    	if( puntuación > jugador1.getPuntuacion()) {
+                    		jugador1.setPuntuacion(puntuación);
+                    	}
         				System.out.println("Puntuacion final: " + jugador1.getPuntuacion());
         				break;
     	  
                    case 2:
-                	   puntuacionDificil = play(tModo.ModoDificil) * 2;
-       			    jugador1.setPuntuacion(puntuacionDificil);
-       			    System.out.println("Puntuacion final: " + puntuacionDificil);
+                	   puntuación = play(tModo.ModoDificil) ;
+                	   if( puntuación > jugador1.getPuntuacion()) {
+                   		jugador1.setPuntuacion(puntuación * 2);
+                	   }
+       			    System.out.println("Puntuacion final: " + puntuación * 2);
        				break;
                    case 3:
+                	   ranking.ordenarRanking();
        				ranking.showRanking();
        				break;
        			case 4:
+       				ranking.ordenarRanking();
        				ranking.showBestPlayer();
        				break;
     	          default:
