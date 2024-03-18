@@ -115,7 +115,8 @@ public class Record {
 			if(jugadores[0].getPuntuacion() == jugadores[i].getPuntuacion()) {
 				System.out.println(i + 1 +"."+ jugadores[i].getNombre() + " " + jugadores[i].getPuntuacion());
 				i++;
-			}else i++;
+			}else 
+				i++;
 				
 			}
 			
