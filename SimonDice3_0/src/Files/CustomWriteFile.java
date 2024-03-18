@@ -14,7 +14,7 @@ public class CustomWriteFile extends FileWriter implements ICostumWriteFile {
 	
 	public CustomWriteFile (String texto) throws IOException{
 		super(texto);
-		this.wr = new FileWriter(" ");
+		this.wr = new FileWriter("SimonDice3_0/src/data/top.txt");
 		
 	}
 	

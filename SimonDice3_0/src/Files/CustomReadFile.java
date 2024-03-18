@@ -19,7 +19,7 @@ public class CustomReadFile extends FileReader implements ICostumReadFile{
 public CustomReadFile(String texto) throws FileNotFoundException {
 		super(texto);
 		// TODO Auto-generated constructor stub
-		this.red = new FileReader(" ");
+		this.red = new FileReader("SimonDice3_0/src/data/top.txt");
 		this.scanner = new Scanner(this);
 	}
 		

@@ -151,7 +151,7 @@ public class Record {
 	
 	public void cargarRanking() throws IOException {
 		
-			CustomReadFile red = new CustomReadFile("");
+			CustomReadFile red = new CustomReadFile("SimonDice3_0/src/data/top.txt");
 			ArrayList<Jugador> a = new ArrayList<Jugador>();
 			a = red.leerJugadores();
 			
