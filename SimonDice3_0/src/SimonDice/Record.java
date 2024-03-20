@@ -11,7 +11,7 @@ import Files.CustomWriteFile;
 
 public class Record {
 
-	final int MAX_JUGADORES = 10;
+	final int MAX_JUGADORES = 6;
 	private int contador ;
 	private Jugador[] jugadores;
 	private int maxim = 0;
@@ -103,7 +103,7 @@ public class Record {
 		ordenarRanking();
 		int i = 1;
 		System.out.println("1." + jugadores[0].getNombre() + " " + jugadores[0].getPuntuacion());
-		while(i < this.maxim) {
+		while(i < this.contador) {
 			if(jugadores[0].getPuntuacion() == jugadores[i].getPuntuacion()) {
 				System.out.println(i + 1 +"."+ jugadores[i].getNombre() + " " + jugadores[i].getPuntuacion());
 				i++;
