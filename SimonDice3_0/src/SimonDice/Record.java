@@ -26,7 +26,7 @@ public class Record {
 	 * si obtenemos mas de 10 jugadores el siguiente lo actualizo con el jugador que menos puntos tenga el array
 	 * @param _jugador recibir objeto tipo Jugador
 	 */
-	public void añadirJugador(Jugador _jugador) {
+	public void anadirJugador(Jugador _jugador) {
 		if (this.contador < this.MAX_JUGADORES) {
 			this.jugadores[contador] = _jugador;
 			this.contador++;
@@ -151,7 +151,7 @@ public class Record {
 	        int size = a.size();
 	        while (i < size && i < this.MAX_JUGADORES) {
 	            Jugador j = a.get(i);
-	            añadirJugador(j);
+	            anadirJugador(j);
 	            i++;
 	        }
 	        red.closeReadFile();

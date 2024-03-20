@@ -30,7 +30,7 @@ public class Engine {
         private int MAX_COLORES_DIFICIL = 6;
         private tColores[] secuenciaColores = new tColores [MAX_COLORES_SEC];
         private int numAyudas = 3;
-        public int puntuacion;
+        public int puntuaciones;
         /**
          * charToColor: Recibimos un char, comprobado en el switch y devuelve uno de los colores de tColores
          * si el color no existe devuelve null
@@ -182,7 +182,7 @@ public class Engine {
         int coloresSecuencia;
         //Se establece a true e indica que el juego no ha terminado
         boolean error = true;
-         puntuacion = 0;
+         puntuaciones = 0;
         numSecuencia = 1;
         coloresSecuencia = 3;
           //Nº ayudas disponibles
@@ -214,7 +214,7 @@ public class Engine {
  					scanner.nextLine();
  					if((caracter == 'x'|| caracter == 'X')&& numAyudas >= 1) {
  						usarAyudas(j);
- 						puntuacion -= 8;
+ 						puntuaciones -= 8;
  						j++;
  					}else if ((caracter == 'x'|| caracter == 'X')&& numAyudas < 1) {
  						usarAyudas(j);
@@ -222,7 +222,7 @@ public class Engine {
  				    else if (comprobarColor(j, charToColor(caracter))) {
  						System.out.println("Esta correcto, siga");
  						j++;
- 						puntuacion += 2;
+ 						puntuaciones += 2;
  					}else {
  						System.out.println("Ha fallado, si lo desea vuelva a intentarlo");
  						error = false;
@@ -234,16 +234,16 @@ public class Engine {
  					System.out.println("Buen trabajo!! Sigamos con la próxima secuencia");
  					numSecuencia++;
  					coloresSecuencia++;
- 					puntuacion += 8;
+ 					puntuaciones += 8;
  				}else if(error && coloresSecuencia == MAX_COLORES_SEC) {
  				System.out.println("ENHORABUENA, HAS GANADO");
- 				puntuacion += 40;
+ 				puntuaciones += 40;
  				error = true;
  				//Al final el juego o fallar en una secuencia, se nos mostrará la puntuación final
  				
  				}
  			}
- 			return puntuacion;
+ 			return puntuaciones;
  		  }
  		
       			
@@ -253,7 +253,7 @@ public class Engine {
  			 */
       public void start() throws IOException{
     	      int _opcion;
-    	      int puntuación;
+    	      int puntuaciones;
     		  Record ranking = new Record();
     	      
     	      ranking.cargarRanking();
@@ -263,7 +263,7 @@ public class Engine {
     	      System.out.println("¿Cuál es tu nombre?");
     	      String nombre = scanner.nextLine();
     	      Jugador jugador1 = new Jugador(nombre);
-    	      ranking.añadirJugador(jugador1);
+    	      ranking.anadirJugador(jugador1);
     	  do {
     	 
     	  System.out.println("Bienvenido " + nombre + " espero que disfrutes.");
@@ -279,19 +279,19 @@ public class Engine {
     	            break;
     	  
                     case 1:
-                    	puntuación = play(tModo.ModoFacil);
-                    	if( puntuación > jugador1.getPuntuacion()) {
-                    		jugador1.setPuntuacion(puntuación);
+                    	puntuaciones = play(tModo.ModoFacil);
+                    	if( puntuaciones > jugador1.getPuntuacion()) {
+                    		jugador1.setPuntuacion(puntuaciones);
                     	}
         				System.out.println("Puntuacion final: " + jugador1.getPuntuacion());
         				break;
     	  
                    case 2:
-                	   puntuación = play(tModo.ModoDificil) ;
-                	   if( puntuación > jugador1.getPuntuacion()) {
-                   		jugador1.setPuntuacion(puntuación * 2);
+                	   puntuaciones = play(tModo.ModoDificil) ;
+                	   if( puntuaciones > jugador1.getPuntuacion()) {
+                   		jugador1.setPuntuacion(puntuaciones * 2);
                 	   }
-       			    System.out.println("Puntuacion final: " + puntuación * 2);
+       			    System.out.println("Puntuacion final: " + puntuaciones * 2);
        				break;
                    case 3:
                 	   ranking.ordenarRanking();
