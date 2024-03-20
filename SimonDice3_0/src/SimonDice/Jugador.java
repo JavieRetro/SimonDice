@@ -20,7 +20,7 @@ public class Jugador {
 	 * @return vble String
 	 */
 	public String getNombre() {
-		return "Hola " + this.nombre + " pulsa la tecla ENTER para empezar a jugar";	
+		return this.nombre;	
 	}
 	/**
 	 * metodo que devuelve la vble int puntuacion
@@ -44,4 +44,5 @@ public class Jugador {
 		
 		this.puntuacion = x;
 	}
+	
 }

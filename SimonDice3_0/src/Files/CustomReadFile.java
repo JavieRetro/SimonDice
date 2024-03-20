@@ -2,6 +2,7 @@ package Files;
 
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.io.FileReader;
 import java.io.FileNotFoundException; 
 import java.io.IOException;
@@ -12,14 +13,13 @@ import SimonDice.Jugador;
 
 public class CustomReadFile extends FileReader implements ICostumReadFile{
 	    
-
-		private FileReader red;
+	ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
 	    private Scanner scanner;
 	    
 public CustomReadFile(String texto) throws FileNotFoundException {
 		super(texto);
 		// TODO Auto-generated constructor stub
-		this.red = new FileReader("SimonDice3_0/src/data/top.txt");
+		
 		this.scanner = new Scanner(this);
 	}
 		
@@ -29,18 +29,23 @@ public CustomReadFile(String texto) throws FileNotFoundException {
 	 */
 	public ArrayList<Jugador> leerJugadores() {
 		// TODO Auto-generated method stub
-			ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
-			while (scanner.hasNextLine()) {
+		
+			while (this.scanner.hasNextLine()) {
+				try {
 				int puntuacion = scanner.nextInt();
-				String texto = scanner.nextLine();
+				String texto = scanner.next();
 				Jugador jugador = new Jugador(texto);
 				jugador.setPuntuacion(puntuacion);
 				jugadores.add(jugador);
-			
+				this.scanner.nextLine();
+				}catch(NoSuchElementException e) {
+					System.out.println(e);
 				}
-				closeReadFile();
-				return jugadores;
+			
 			}
+				return this.jugadores;
+		
+		}
 		
 		
 
@@ -48,7 +53,7 @@ public CustomReadFile(String texto) throws FileNotFoundException {
 	public void closeReadFile() {
 		// TODO Auto-generated method stub
 		try {
-			this.red.close();
+			this.close();
 		
 	}catch(IOException e) {
 		System.out.println("No se cierra el scanner de lectura");

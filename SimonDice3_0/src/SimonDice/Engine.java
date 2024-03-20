@@ -30,6 +30,7 @@ public class Engine {
         private int MAX_COLORES_DIFICIL = 6;
         private tColores[] secuenciaColores = new tColores [MAX_COLORES_SEC];
         private int numAyudas = 3;
+        public int puntuacion;
         /**
          * charToColor: Recibimos un char, comprobado en el switch y devuelve uno de los colores de tColores
          * si el color no existe devuelve null
@@ -181,7 +182,7 @@ public class Engine {
         int coloresSecuencia;
         //Se establece a true e indica que el juego no ha terminado
         boolean error = true;
-        int puntuacion = 0;
+         puntuacion = 0;
         numSecuencia = 1;
         coloresSecuencia = 3;
           //Nº ayudas disponibles
@@ -250,18 +251,21 @@ public class Engine {
  			 * Metodo que muestra el menú principal, obtenemos una opción del usuario e iniciamos la partida co
  			 * un modo seleccionado.
  			 */
- 		       public void start() throws IOException{
+      public void start() throws IOException{
     	      int _opcion;
     	      int puntuación;
-    			Record ranking = new Record();
-    	      System.out.println("Bienvenido al...");
+    		  Record ranking = new Record();
+    	      
+    	      ranking.cargarRanking();
+    	      //bucle do while que se repite mientras no demos lugar a la opción 0 para salir
+    	       System.out.println("Bienvenido al...");
     	      System.out.println("¡¡¡Simoooonnn diceeee!!!");
     	      System.out.println("¿Cuál es tu nombre?");
     	      String nombre = scanner.nextLine();
-    	      //bucle do while que se repite mientras no demos lugar a la opción 0 para salir
-    	      
+    	      Jugador jugador1 = new Jugador(nombre);
+    	      ranking.añadirJugador(jugador1);
     	  do {
-    	  Jugador jugador1 = new Jugador(nombre);
+    	 
     	  System.out.println("Bienvenido " + nombre + " espero que disfrutes.");
     	  System.out.println("Dime, ¿que modo escoges?:" + "\n 1.Modo Facil\n " + "2.Modo Dificil \n " + "3.Ranking Puntuacion 10 Mejores Jugadores\n " + "4.Mejor(es) jugador(es) ranking\n " + "0.Salir");
     	  _opcion = scanner.nextInt();
@@ -271,7 +275,7 @@ public class Engine {
       
                     case 0:
     	            System.out.println("Vuelva pronto, espero que haya disfrutado de esta experiencia");
-    	            System.exit(0);
+    	            ranking.escribirRanking();
     	            break;
     	  
                     case 1:

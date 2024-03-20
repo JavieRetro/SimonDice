@@ -11,8 +11,8 @@ import Files.CustomWriteFile;
 
 public class Record {
 
-	final private int MAX_JUGADORES = 10;
-	private int contador = 0;
+	final int MAX_JUGADORES = 10;
+	private int contador ;
 	private Jugador[] jugadores;
 	private int maxim = 0;
 	
@@ -42,23 +42,17 @@ public class Record {
 	 *  tenemos hasta el momento en array
 	 */
 
-	public void maximo() {
-		if (contador < MAX_JUGADORES) {
-			maxim = contador;
-		} else {
-			maxim = MAX_JUGADORES;
-		}
-	}
+
 	/**
 	 * ordenarRanking: ordenar de mayor a menor los jugadores por puntuación.
 	 */
 	
 	public void ordenarRanking() {
-		maximo();
+	
 		
-		for(int i = 0; i <= this.maxim - 1; i++ ) {
-			for(int j = 0; j <= this.maxim - 1; j++){
-				if(jugadores[j].getPuntuacion() < jugadores[j + 1].getPuntuacion()) {
+		for(int i = 0; i <= this.contador - 1; i++ ) {
+			for(int j = 0; j < this.contador - i - 1; j++){
+				if(this.jugadores[j].getPuntuacion() < this.jugadores[j + 1].getPuntuacion()) {
 					Jugador jugador = jugadores[j + 1];
 					jugadores[j + 1] = jugadores[j];
 					jugadores[j] = jugador;
@@ -70,9 +64,8 @@ public class Record {
 	 * Mostrar los 10 mejores jugadores
 	 */
 	public void showRanking () {
-		ordenarRanking();
-		for(int i = 0; i < this.maxim; i++ ) {
-			System.out.println(i + 1 + "." + jugadores[i].getNombre() + " " + jugadores[i].getPuntuacion());
+		for(int i = 0; i < this.contador; i++ ) {
+			System.out.println(i + 1 + "." + this.jugadores[i].getNombre() + " " + this.jugadores[i].getPuntuacion());
 		}
 		
 	}
@@ -84,7 +77,6 @@ public class Record {
 	 */
 	
 	public Jugador buscarJugador(String _nombre) {
-		maximo();
 		boolean encontrado = false;
 		int i = 0;
 		while(!encontrado && i < maxim) {
@@ -129,14 +121,14 @@ public class Record {
 	
 	public void escribirRanking() {
 		try {
-			this.maximo();
-			CustomWriteFile wr = new CustomWriteFile("SimonDice3_0/src/data/jugadores.txt");
+			CustomWriteFile wr = new CustomWriteFile("./src/data/top.txt");
 			String nombre = " ";
-			for(int i = 0; i < this.maxim; i++) {
-				nombre = this.jugadores[i].getPuntuacion() + " " + this.jugadores[i].getNombre() + "\n";
-				wr.writeFile(nombre);
+			for(int i = 0; i < this.contador; i++) {
+				nombre += this.jugadores[i].getPuntuacion() + " " + this.jugadores[i].getNombre() + "\n";
+				
 				
 			}
+			wr.writeFile(nombre);
 			wr.closeWriteFile();
 			
 		} catch (IOException e) {
@@ -152,17 +144,17 @@ public class Record {
 	
 	public void cargarRanking() throws IOException {
 		
-			CustomReadFile red = new CustomReadFile("SimonDice3_0/src/data/top.txt");
-			ArrayList<Jugador> a = new ArrayList<Jugador>();
-			a = red.leerJugadores();
+			CustomReadFile red = new CustomReadFile("./src/data/top.txt");
+			ArrayList<Jugador> a = red.leerJugadores();
 			
-			if(a == null) {
-				return;
-			}
-			for(int i = 0; i < a.size()&& i < MAX_JUGADORES; i++) {
-				añadirJugador(a.get(i));
-			}
-		}
+			int i = 0;
+	        int size = a.size();
+	        while (i < size && i < this.MAX_JUGADORES) {
+	            Jugador j = a.get(i);
+	            añadirJugador(j);
+	            i++;
+	        }
+	        red.closeReadFile();
 	
-		
+	   }
 	}

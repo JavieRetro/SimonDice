@@ -14,7 +14,6 @@ public class CustomWriteFile extends FileWriter implements ICostumWriteFile {
 	
 	public CustomWriteFile (String texto) throws IOException{
 		super(texto);
-		this.wr = new FileWriter("SimonDice3_0/src/data/top.txt");
 		
 	}
 	
@@ -22,7 +21,7 @@ public class CustomWriteFile extends FileWriter implements ICostumWriteFile {
 	public void closeWriteFile() {
 		// TODO Auto-generated method stub
 		try {
-			this.wr.close();
+			this.close();
 		} catch (IOException e) {
 			System.out.println("Error al leer el fichero");
 		}
@@ -32,7 +31,7 @@ public class CustomWriteFile extends FileWriter implements ICostumWriteFile {
 	public void writeFile(String texto) {
 		// TODO Auto-generated method stub
 		try {
-			this.wr.write(texto);
+			this.write(texto);
 		}catch (IOException e) {
 		System.out.println("Error al fichar el texto");
 	}
